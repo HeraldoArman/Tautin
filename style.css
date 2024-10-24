@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 p {
     transition: 0.3s;
     text-shadow: 0 0 10px white;
@@ -7,7 +7,7 @@ p {
     color: white;
 }
 
-h2 {
+h2, h3, h4 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -112,10 +112,8 @@ h2 {
 
 .button-menu {
     position: relative;
-    /* background: blue; */
     color: white;
     text-decoration: none;
-    /* text-transform: uppercase; */
     font-size: var(--fontsize);
     padding: 10px 30px;
     transition: 0.5s;
@@ -289,8 +287,10 @@ h2 {
     left: 0;
     padding: 10px 0;
     font-size: 16px;
+    font-weight: 600;
     color: #fff;
     pointer-events: none;
+    text-shadow: 0px 0px 1px rgb(255, 255, 255);
 }
 
 .dashboard-box .user-box input {
@@ -342,15 +342,27 @@ h2 {
     box-sizing: border-box;
     box-shadow: 0 0px 25px rgba(255, 255, 255, 0.325);
     border-radius: 10px;
+    text-align: left;
 }
 
 
 .dashboard-box-link h2 {
-    margin: 0 0 30px;
-    padding: 0;
+    /* margin: 0 0 30px; */
+    /* padding: 0; */
     color: #fff;
-    text-align: left;
 }
+
+.dashboard-box-link p {
+    /* margin: 0 0 30px; */
+    /* padding: 0; */
+    /* color: #ffffff; */
+    text-shadow: none;
+}
+
+.link-properties {
+    color: rgba(255, 255, 255, 0.607);
+}
+
 
 .dashboard-box-link .user-box {
     position: relative;
@@ -382,9 +394,6 @@ h2 {
 }
 
 
-
-
-
 .dashboard-box-link .user-box input:focus~label,
 .dashboard-box-link .user-box input:valid~label {
     top: -20px;
@@ -393,3 +402,71 @@ h2 {
     font-size: 12px;
 }
 
+
+.dashboard-box-link p a {
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+}
+
+.dashboard-box-link p a:hover {
+    text-shadow: 0px 0px 5px white;
+
+    transition: 0.5s;
+}
+
+
+.dashboard-box-link h4 a {
+    color: white;
+    text-align: left;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+
+}
+
+.dashboard-box-link h4 a:hover {
+    text-shadow: 0px 0px 5px white;
+    transition: 0.5s;
+}
+
+.dashboard-box-link h4 i {
+    padding-left: 1vh;
+    color: white;
+    text-align: left;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+
+}
+
+.dashboard-box-link h4 i:hover {
+    text-shadow: 0px 0px 5px white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+.button-link {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 4px 12px; /* Pastikan padding proporsional */
+    line-height: 1.5; /* Ini akan menyesuaikan tinggi teks dengan baik */
+    transition: 0.5s;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: inline-block; /* Menghindari masalah dengan block-level elemen */
+    vertical-align: middle; /* Memastikan teks berada di tengah */
+}
+
+.button-link:hover {
+    color: #0D3B66;
+    background-color: white;
+    box-shadow: 0px 0px 5px white;
+    letter-spacing: 1px;
+    border: 2px solid rgb(211, 211, 255);
+}
