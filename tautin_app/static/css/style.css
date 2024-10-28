@@ -120,7 +120,32 @@ h2, h3, h4 {
     box-shadow: 0px 0px 5px white;
     letter-spacing: 1px;
     border: 2px solid rgb(211, 211, 255);
+}
 
+
+.button-login{
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: var(--fontsize);
+    padding: 10px 30px;
+    transition: 0.5s;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    border: 2px solid white;
+    border-radius: 100px;
+    display: block;
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+}
+
+.button-login:hover{
+    color:#0D3B66;
+    background-color: white;
+    box-shadow: 0px 0px 5px white;
+    letter-spacing: 1px;
+    border: 2px solid rgb(211, 211, 255);
 }
 
 .navbar {
@@ -185,6 +210,15 @@ h2, h3, h4 {
     border-bottom: 2px solid white;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+
+
 .login-box .user-box label {
     position: absolute;
     top: 0;
@@ -205,11 +239,6 @@ h2, h3, h4 {
     font-size: 12px;
 }
 
-
-.button-login{
-    display: block;
-    text-align: center;
-}
 
 .have-or-not-acc {
     font-weight:bolder;
