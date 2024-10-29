@@ -11,18 +11,35 @@
 <body class="background-gradient">
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand text-light button-navbar" style="font-size: 1.5rem;" href="#">TAUTIN.</a>
+    {% if user.is_authenticated %}
+    <a class="navbar-brand text-light button-navbar" style="font-size: 1.5rem;" href="{% url "dashboard" %}">TAUTIN.</a>
+    {% else %}
+    <a class="navbar-brand text-light button-navbar" style="font-size: 1.5rem;" href="{% url "index" %}">TAUTIN.</a>
+    {% endif %}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link text-light button-navbar" href="{% url "dashboard" %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="nav-link active text-light button-navbar">Logout</button>
+        </form>
+        
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link text-light button-navbar" href="{% url "login" %}">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active text-light button-navbar" href="#">Register</a>
         </li>
+        {% endif %}
       </ul>
     </div>
   </div>
