@@ -7,7 +7,7 @@ p {
     color: white;
 }
 
-h2, h3, h4 {
+h2, h3, h4, h5 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -104,6 +104,7 @@ h2, h3, h4 {
 .button-menu {
     position: relative;
     color: white;
+    background-color: transparent;
     text-decoration: none;
     font-size: var(--fontsize);
     padding: 10px 30px;

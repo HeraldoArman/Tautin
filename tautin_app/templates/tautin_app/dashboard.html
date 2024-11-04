@@ -4,29 +4,42 @@
 <div class="container d-flex justify-content-center align-items-center flex-column">
     <div class="dashboard-box">
         <h2>Create Link!</h2>
-        <form action="">
+        <form action="{% url "dashboard" %}" method='POST'>
+            {% csrf_token %}
+        
             <div class="user-box">
-                <input type="text" required>
+                {% comment %} <input type="text" required> {% endcomment %}
+                
+                {{ form.long_link}}
                 <label for="">Enter your long URL</label>
             </div>
+            {% if form.short_url_link_address.errors %}
+                        {% for error in form.short_url_link_address.errors %}
+                        <div class="pb-2">
+                            <h5>{{error}}</h5>
+                        </div>
+                        {% endfor %}
+            {% endif %}
             <div class="row justify-content-start">
                 <div class="col-auto" style="padding-right: 5px;">
                     <div class="user-box" style="padding: 0; margin: 0;">
                         <p class="mb-0">tautin.link/</p>
                     </div>
                 </div>
+                
                 <div class="col" style="padding-left: 0; margin-left: 0;">
                     <div class="user-box" >    
-                        <input type="text" required>
+                        {% comment %} <input type="text" required> {% endcomment %}
+                        {{form.short_url_link_address}}
                         <label for="">Enter your short URL</label>
                     </div>
                 </div>
             </div>
             
             <div class="d-flex justify-content-start pb-5">
-                <a href="dashboard.html" class="button-menu" style="--fontsize:1em">
+                <button type='submit' class="button-menu" style="--fontsize:1em">
                     Shorten!
-                </a>   
+                </button>
             </div>
         </form>
         
@@ -34,12 +47,12 @@
             <h2 class="pt-3">Dashboard</h2>
         </div>
         
-        
+        {% for link in items %}
         <div class="pt-3 d-flex justify-content-center align-items-center flex-column">
             <div class="dashboard-box-link ">
                 <div class="row d-flex">
                     <div class="col">
-                        <p class="link-properties">Oct 24, 2024</p>
+                        <p class="link-properties">{{link.date_created}}</p>
                     </div>
                     <div class="col d-flex justify-content-end">
                         <a href="" class="button-link me-2"><i class="bi bi-qr-code"> </i> QR Code</a>
@@ -47,37 +60,16 @@
                     </div>
                 </div>
                 <h4>
-                    <a href="#" class="short-link">tautin.link/heraldoarman</a> 
+                    <a href="#" class="short-link">{{link.short_url_link}}</a> 
                     <i class="bi bi-copy copy-icon"></i>
-                    <span class="copy-text">Link disalin!</span>
+                    <span class="copy-text">Link copied!</span>
                 </h4>
-                <p><a href="https://github.com/HeraldoArman">https://github.com/HeraldoArman</a></p>
-                <p class="link-properties">10 clicks</p>
+                <p><a href="{{ link.long_link }}">{{link.long_link}}</a></p>
+                <p class="link-properties">{{link.total_views}} clicks</p>
             </div>
         </div>
+        {% endfor %}
         
         
-        <div class="pt-3 d-flex justify-content-center align-items-center flex-column">
-            <div class="dashboard-box-link ">
-                <div class="row d-flex">
-                    <div class="col">
-                        <p class="link-properties">Oct 24, 2024</p>
-                    </div>
-                    <div class="col d-flex justify-content-end">
-                        <a href="" class="button-link me-2"><i class="bi bi-qr-code"> </i> QR Code</a>
-                        <a href="edit.html" class="button-link"><i class="bi bi-pencil-fill"> </i> Edit</a>
-                    </div>
-                </div>
-                <div>
-                    <h4>
-                        <a href="#" class="short-link">tautin.link/janedoe</a> 
-                        <i class="bi bi-copy copy-icon"></i>
-                        <span class="copy-text">Link disalin!</span>
-                    </h4>
-                </div>
-                <p><a href="https://github.com/HeraldoArman">https://github.com/HeraldoArman</a></p>
-                <p class="link-properties">10 clicks</p>
-            </div>
-        </div>
         
 {% endblock content %}
