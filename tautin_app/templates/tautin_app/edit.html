@@ -4,9 +4,11 @@
         <div class="edit-box">
             <h2>Edit Link</h2>
 
-        <form action="">
+        <form action="" method='POST'>
             <div class="user-box">
-                <input type="text" required value="https://github.com/HeraldoArman">
+              {% csrf_token %}
+                {% comment %} <input type="text" required value="https://github.com/HeraldoArman"> {% endcomment %}
+                {{form.long_link}}
                 <label for="">Enter your long URL</label>
             </div>
             <div class="row justify-content-start">
@@ -17,7 +19,8 @@
                 </div>
                 <div class="col" style="padding-left: 0; margin-left: 0;">
                     <div class="user-box" >    
-                        <input type="text" required value="heraldoarman">
+                        {% comment %} <input type="text" required value="heraldoarman"> {% endcomment %}
+                        {{form.short_url_link_address}}
                         <label for="">Enter your short URL</label>
                     </div>
                 </div>
@@ -26,12 +29,10 @@
                 <div class="row d-flex">
                   <div class="col px-2 d-flex justify-content-end">
                     <div class="px-1">
-  
-                      <a href="dashboard.html" class="button-cancel" style="--fontsize:1em;">Cancel</a>
+                      <a href="{% url "dashboard" %}" class="button-cancel" style="--fontsize:1em;">Cancel</a>
                     </div>
                     <div class="px-1">
-  
-                      <a href="dashboard.html" class="button-edit" style="--fontsize:1em;">Edit</a>
+                      <button type='submit' class="button-edit" style="--fontsize:1em;">Edit</button>
                     </div>
                   </div>
   

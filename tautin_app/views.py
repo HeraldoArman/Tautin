@@ -21,7 +21,7 @@ class DashboardView(LoginRequiredMixin, View):
     # template_name = 'dashboard.html'
     def get(self, request):
         form = LinkForm()
-        items = Link.objects.all()
+        items = Link.objects.filter(username=self.request.user).order_by('-date_created')
         return render(request, 'tautin_app/dashboard.html', {'form' : form, 'items' : items})
     
     def post(self, request):
@@ -34,7 +34,7 @@ class DashboardView(LoginRequiredMixin, View):
         if not form.is_valid():
             print(form.errors)  # Ini akan menampilkan kesalahan di console
 
-        items = Link.objects.all()
+        items = Link.objects.filter(username=request.user).order_by('-date_created')
         return render(request, 'tautin_app/dashboard.html', {'form' : form, 'items': items})
 
 class RegisterView(CreateView):
@@ -47,6 +47,18 @@ class RegisterView(CreateView):
         user = form.save() 
         login(self.request, user) 
         return response
+    
+class LinkEditView(LoginRequiredMixin, UpdateView):
+    model = Link
+    form_class = LinkForm
+    template_name = 'tautin_app/edit.html'
+    success_url = reverse_lazy('dashboard')
+    slug_field = 'short_url_link_address'       # Field di model yang digunakan sebagai slug
+    slug_url_kwarg = 'short_url_link_address'
+    def get_queryset(self):
+        return Link.objects.filter(username=self.request.user)
+    
+    
     
 def redirect_to_long_link(request, short_url_link_address):
     link = get_object_or_404(Link, short_url_link_address=short_url_link_address)
