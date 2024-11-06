@@ -15,7 +15,7 @@ class Link(models.Model):
     def save(self, *args, **kwargs):
         current_site = Site.objects.get_current()
         domain = current_site.domain
-        self.short_url_link = f"http://{domain}/{self.short_url_link_address}"
+        self.short_url_link = f"{domain}/{self.short_url_link_address}"
         super().save(*args, **kwargs)
 
     def __str__(self):

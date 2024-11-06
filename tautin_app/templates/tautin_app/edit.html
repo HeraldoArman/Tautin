@@ -11,6 +11,13 @@
                 {{form.long_link}}
                 <label for="">Enter your long URL</label>
             </div>
+            {% if form.short_url_link_address.errors %}
+                        {% for error in form.short_url_link_address.errors %}
+                        <div class="pb-2">
+                            <h5>{{error}}</h5>
+                        </div>
+                        {% endfor %}
+            {% endif %}
             <div class="row justify-content-start">
                 <div class="col-auto" style="padding-right: 5px;">
                     <div class="user-box" style="padding: 0; margin: 0;">
@@ -30,8 +37,6 @@
                   <div class="col px-2 d-flex justify-content-end">
                     <div class="px-1">
                       <a href="{% url "dashboard" %}" class="button-cancel" style="--fontsize:1em;">Cancel</a>
-                    </div>
-                    <div class="px-1">
                       <button type='submit' class="button-edit" style="--fontsize:1em;">Edit</button>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 {% extends "tautin_app/base.html" %}
 {% block content %}
-
+{% load qr_code %}
 <div class="container d-flex justify-content-center align-items-center flex-column">
     <div class="dashboard-box">
         <h2>Create Link!</h2>
@@ -49,22 +49,23 @@
         
         {% for link in items %}
         <div class="pt-3 d-flex justify-content-center align-items-center flex-column">
-            <div class="dashboard-box-link ">
+            <div class="dashboard-box-link">
                 <div class="row d-flex">
                     <div class="col">
                         <p class="link-properties">{{link.date_created}}</p>
                     </div>
                     <div class="col d-flex justify-content-end">
-                        <a href="" class="button-link me-2"><i class="bi bi-qr-code"> </i> QR Code</a>
+                        {% comment %} {% qr_from_text link.short_url_link size=8 version=10 image_format='png' as qr_code_url %} {% endcomment %}
+                        <a href="" class="button-link me-2" download><i class="bi bi-qr-code"> </i> QR Code</a>
                         <a href="{% url "edit" short_url_link_address=link.short_url_link_address%}" class="button-link"><i class="bi bi-pencil-fill"> </i> Edit</a>
                     </div>
                 </div>
                 <h4>
-                    <a href="#" class="short-link">{{link.short_url_link}}</a> 
+                    <a href="{{link.short_url_link}}" class="short-link" target="_blank" rel="noopener noreferrer">{{link.short_url_link}}</a> 
                     <i class="bi bi-copy copy-icon"></i>
                     <span class="copy-text">Link copied!</span>
                 </h4>
-                <p><a href="{{ link.long_link }}">{{link.long_link}}</a></p>
+                <p><a href="{{ link.long_link }}" target="_blank" rel="noopener noreferrer">{{link.long_link}}</a></p>
                 <p class="link-properties">{{link.total_views}} clicks</p>
             </div>
         </div>

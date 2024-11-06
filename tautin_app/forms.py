@@ -14,9 +14,10 @@ class LinkForm(forms.ModelForm):
     def clean_short_url_link_address(self):
         short_url_link_address = self.cleaned_data.get('short_url_link_address')
         
-        # Memeriksa apakah short_url_link_address sudah ada
-        if Link.objects.filter(short_url_link_address=short_url_link_address).exists():
-            # print('error')
-            raise ValidationError("Short URL Link Address already used. Please use another URL!")
-        
+        if self.instance.pk:
+            if Link.objects.filter(short_url_link_address=short_url_link_address).exclude(pk=self.instance.pk).exists():
+                raise ValidationError("Short URL Link Address already used. Please use another URL!")
+        else:
+            if Link.objects.filter(short_url_link_address=short_url_link_address).exists():
+                raise ValidationError("Short URL Link Address already used. Please use another URL!")
         return short_url_link_address
