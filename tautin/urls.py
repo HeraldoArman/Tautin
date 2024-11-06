@@ -22,6 +22,8 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    # path('login/', include('allauth.urls')),
     path('logout/', views.LogoutView.as_view(next_page='index'), name='logout'),
+    path('accounts/', include('allauth.urls')),
     path('', include('tautin_app.urls')),
 ]
