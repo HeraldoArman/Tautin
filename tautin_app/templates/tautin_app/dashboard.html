@@ -56,7 +56,7 @@
                     </div>
                     <div class="col d-flex justify-content-end">
                         {% comment %} {% qr_from_text link.short_url_link size=8 version=10 image_format='png' as qr_code_url %} {% endcomment %}
-                        <a href="" class="button-link me-2" download><i class="bi bi-qr-code"> </i> QR Code</a>
+                        <a href="{% url "download_qr" short_url_link_address=link.short_url_link_address%}" class="button-link me-2" download><i class="bi bi-qr-code"> </i> QR Code</a>
                         <a href="{% url "edit" short_url_link_address=link.short_url_link_address%}" class="button-link"><i class="bi bi-pencil-fill"> </i> Edit</a>
                     </div>
                 </div>

@@ -30,6 +30,10 @@
             {% csrf_token %}
             <button type="submit" class="nav-link active text-light button-navbar">Logout</button>
         </form>
+        <li class="nav-item">
+          {% comment %} <p>Hello, {{ user.username }}</p> {% endcomment %}
+          <a href="" disabled class="nav-link disabled text-light button-navbar">Hello, {{user.username}}</a>
+        </li>
         
         </li>
         {% else %}

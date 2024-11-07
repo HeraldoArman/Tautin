@@ -6,5 +6,7 @@ urlpatterns = [
     path("dashboard/", views.DashboardView.as_view(), name="dashboard"),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('<str:short_url_link_address>/edit/', views.LinkEditView.as_view(), name='edit'),
-    path('<str:short_url_link_address>/', views.redirect_to_long_link, name='redirect_to_long_link')
+    path('<str:short_url_link_address>/', views.redirect_to_long_link, name='redirect_to_long_link'),
+    path('<str:short_url_link_address>/download', views.download_qr_code, name='download_qr'),
+    
 ]

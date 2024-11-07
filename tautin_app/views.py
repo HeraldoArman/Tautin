@@ -4,16 +4,20 @@ from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
-
+from django.http import FileResponse
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from tautin_app.models import Link
 from tautin_app.forms import LinkForm
+
+import qrcode
+from io import BytesIO
 # Create your views here.
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+    
     
 class DashboardView(LoginRequiredMixin, View):
     # context_object_name = 'links'
@@ -65,3 +69,15 @@ def redirect_to_long_link(request, short_url_link_address):
     link.total_views += 1
     link.save()
     return redirect(link.long_link)
+
+def download_qr_code(request, short_url_link_address):
+    model_link = get_object_or_404(Link, short_url_link_address=short_url_link_address)
+    qrcode_image = qrcode.make(model_link.short_url_link)
+    
+    image_stream = BytesIO()
+    qrcode_image.save(image_stream, 'PNG')
+    image_stream.seek(0)
+    
+    response = FileResponse(image_stream, as_attachment=True)
+    response['Content-Disposition'] = f'attachment; filename="{model_link.short_url_link}_qr.png"'
+    return response

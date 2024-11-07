@@ -10,9 +10,15 @@
                 Turning long URLs into short, memorable links is just the beginning. Simplify your sharing, track your clicks,  and connect faster than ever before. Experience the power of seamless link management with TAUTIN.
             </p>
             <div class="py-3">
+              {% if user.is_authenticated %}
+              <a href="{% url "dashboard" %}" class="button-menu" style="--fontsize:1.5em">
+                Create URL!
+              </a>
+              {% else %}
               <a href="{% url "login" %}" class="button-menu" style="--fontsize:1.5em">
                 Create URL!
               </a>
+              {% endif %}
           </div>
             </div>
         </div>
