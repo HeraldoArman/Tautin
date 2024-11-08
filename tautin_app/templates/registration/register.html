@@ -9,6 +9,8 @@
       {% csrf_token %}
       {% if form.errors %}
       <p>Password didn't match</p>
+      <p>{{form.errors}}</p>
+
       {% endif %}
       <div class="user-box">
         {% comment %} <input type="text" required> {% endcomment %}
