@@ -131,24 +131,25 @@ WSGI_APPLICATION = 'tautin.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(default=POSTGRES_URL, conn_max_age=600),
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': POSTGRES_DATABASE,
-#         'USER': POSTGRES_USER,
-#         'PASSWORD': POSTGRES_PASSWORD,
-#         'HOST': POSTGRES_HOST,
-#         # 'PORT': '',
-#         'OPTIONS' : {
-#             'sslmode' : 'require'
-#         }
-#     }
+#     'default': dj_database_url.config(default=POSTGRES_URL, conn_max_age=600),
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': POSTGRES_DATABASE,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': '5432',
+        'OPTIONS' : {
+            'sslmode' : 'require',
+            'options': '-c project=ep-billowing-waterfall-a1pr41uf',
+        }
+    }
+}
 
 
 # Password validation
