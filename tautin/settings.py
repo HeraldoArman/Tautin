@@ -146,7 +146,7 @@ DATABASES = {
         'PORT': '5432',
         'OPTIONS' : {
             'sslmode' : 'require',
-            'options': '-c project=ep-billowing-waterfall-a1pr41uf',
+            'options': 'ep-billowing-waterfall-a1pr41uf',
         }
     }
 }
