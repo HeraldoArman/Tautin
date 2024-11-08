@@ -61,7 +61,8 @@
                     </div>
                 </div>
                 <h4>
-                    <a href="{{link.short_url_link}}" class="short-link" target="_blank" rel="noopener noreferrer">{{link.short_url_link}}</a> 
+                    {% comment %} change this when deployment {% endcomment %}
+                    <a href="http://{{link.short_url_link}}" class="short-link" target="_blank" rel="noopener noreferrer">{{link.short_url_link}}</a> 
                     <i class="bi bi-copy copy-icon"></i>
                     <span class="copy-text">Link copied!</span>
                 </h4>

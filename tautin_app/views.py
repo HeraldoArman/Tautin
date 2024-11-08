@@ -70,14 +70,15 @@ def redirect_to_long_link(request, short_url_link_address):
     link.save()
     return redirect(link.long_link)
 
+@login_required
 def download_qr_code(request, short_url_link_address):
     model_link = get_object_or_404(Link, short_url_link_address=short_url_link_address)
-    qrcode_image = qrcode.make(model_link.short_url_link)
+    qrcode_image = qrcode.make(model_link.short_url_link, box_size=40)
     
     image_stream = BytesIO()
     qrcode_image.save(image_stream, 'PNG')
     image_stream.seek(0)
     
     response = FileResponse(image_stream, as_attachment=True)
-    response['Content-Disposition'] = f'attachment; filename="{model_link.short_url_link}_qr.png"'
+    response['Content-Disposition'] = f'attachment; filename="{model_link.short_url_link_address}_qr.png"'
     return response
