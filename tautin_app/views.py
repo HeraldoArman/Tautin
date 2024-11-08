@@ -48,7 +48,7 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user, backend='allauth.account.auth_backends.AuthenticationBackend')
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return super().form_valid(form)
     
 class LinkEditView(LoginRequiredMixin, UpdateView):
