@@ -18,6 +18,7 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR.joinpath('tautin_app/templates/tautin_app')
+STATIC_DIR = BASE_DIR.joinpath('tautin_app/static')
 
 
 # Get enviroment variable
@@ -81,6 +82,7 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -184,7 +186,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR.joinpath('static')
+STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 
 LOGIN_REDIRECT_URL = '/dashboard/'
 REGISTER_REDIRECT_URL = '/dashboard/'
