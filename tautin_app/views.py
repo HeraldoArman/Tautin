@@ -51,7 +51,7 @@ class RegisterView(CreateView):
         login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         # return super().form_valid(form)
         # user.save()
-        return redirect('login')
+        return redirect('dashboard')
     
 class LinkEditView(LoginRequiredMixin, UpdateView):
     model = Link
