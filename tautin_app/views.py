@@ -47,10 +47,9 @@ class RegisterView(CreateView):
     success_url = settings.REGISTER_REDIRECT_URL  
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        user = form.save() 
-        login(self.request, user) 
-        return response
+        user = form.save()
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+        return super().form_valid(form)
     
 class LinkEditView(LoginRequiredMixin, UpdateView):
     model = Link
