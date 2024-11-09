@@ -22,11 +22,18 @@ from django.contrib.sites.models import Site
 
 Site.objects.clear_cache()
 
+url_list = {
+    'admin' : 'admin/',
+    'login' : 'login/',
+    'logout' : 'logout/',
+    'accounts' : 'accounts/',
+}
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path(url_list['admin'], admin.site.urls),
+    path(url_list['login'], views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     # path('login/', include('allauth.urls')),
-    path('logout/', views.LogoutView.as_view(next_page='index'), name='logout'),
-    path('accounts/', include('allauth.urls')),
+    path(url_list['logout'], views.LogoutView.as_view(next_page='index'), name='logout'),
+    path(url_list['accounts'], include('allauth.urls')),
     path('', include('tautin_app.urls')),
 ]
