@@ -1,6 +1,9 @@
 from tautin_app.models import Link
 from django import forms
 from django.core.exceptions import ValidationError
+
+from tautin_app import urls as tautin_app_url
+from tautin import urls as tautin_url
 class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
@@ -20,4 +23,7 @@ class LinkForm(forms.ModelForm):
         else:
             if Link.objects.filter(short_url_link_address=short_url_link_address).exists():
                 raise ValidationError("Short URL Link Address already used. Please use another URL!")
+            
+        if short_url_link_address in tautin_app_url.url_list.keys() or short_url_link_address in tautin_app_url.url_list.values() or short_url_link_address in tautin_url.url_list.keys() or short_url_link_address in tautin_url.url_list.values():
+            raise ValidationError("Short URL Link Address already used. Please use another URL!")
         return short_url_link_address
