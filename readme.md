@@ -12,7 +12,6 @@ This is a simple link shortener website project created for learning purposes.
 - **Create QR code**: generate a QR code
 
 
-
 ## Technologies Used
 
 - **Frontend**: 
@@ -28,7 +27,7 @@ This is a simple link shortener website project created for learning purposes.
 
 ## Contribution
 
-This project is for learning purposes and has a lot of bugs. But if you want to provide suggestions or improve the code, feel free to create a pull request or submit an issue.
+This project is for learning purposes and has a lot of bugs (and this web even this web is not responsive 😭). But if you want to provide suggestions or improve the code, feel free to create a pull request or submit an issue.
 
 
 Happy coding! ✨
